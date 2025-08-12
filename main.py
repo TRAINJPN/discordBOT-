@@ -88,7 +88,7 @@ async def on_ready():
 
     try:
         await bot.tree.sync()
-        await send_log(bot, "コマンドを同期しました")
+        
     except Exception as e:
         print(f"コマンドの同期に失敗: {e}")
 
