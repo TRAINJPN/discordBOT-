@@ -44,9 +44,9 @@ threading.Thread(
     daemon=True
 ).start()
 
-TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+TOKEN = os.environ.get('DISCORD_TOKEN')
 if not TOKEN:
-    print("エラー: 環境変数 DISCORD_BOT_TOKEN が設定されていません。")
+    print("エラー: 環境変数 DISCORD_TOKEN が設定されていません。")
     exit(1)
 
 intents = discord.Intents.all()
