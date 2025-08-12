@@ -5,7 +5,6 @@ from discord.ext import commands
 import os
 from flask import Flask
 import threading
-from threading import Thread
 import requests
 import time
 
@@ -36,7 +35,7 @@ def ping_loop(url):
         time.sleep(300)
 
 # Flask起動用スレッド
-Thread(target=run).start()
+threading.Thread(target=run).start()
 
 # 自動Pingスレッド
 threading.Thread(
