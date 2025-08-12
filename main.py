@@ -34,7 +34,7 @@ def ping_loop(url):
 Thread(target=run).start()
 
 # ここでping_loopを別スレッドで動かす
-threading.Thread(target=ping_loop, args=('',), daemon=True).start()
+threading.Thread(target=ping_loop, args=('https://discordbot-ufkt.onrender.com',), daemon=True).start()
 TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
 if not TOKEN:
     print("エラー: 環境変数 DISCORD_BOT_TOKEN が設定されていません。")
