@@ -23,8 +23,7 @@ def home():
     """
 
 def run():
-    port = int(os.environ.get('PORT', 8080))  # 環境変数PORTがあれば使う
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=8080)
 
 def ping_loop(url):
     while True:
