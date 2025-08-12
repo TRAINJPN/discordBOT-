@@ -57,19 +57,21 @@ class ServerInfo(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-announcement_channels = {}
+announcement_channels = []  # 数値IDのリスト
+# 例: announcement_channels = [123456789012345678, 987654321098765432]
 
 def load_announcement_channels():
     try:
         with open("announcement_channels.json", "r") as f:
-            return json.load(f)
+            return json.load(f)  # 数値リストとして読み込む想定
     except Exception as e:
         print(f"ファイル読み込みエラー: {e}")
-        return {}
+        return []
 
 def save_announcement_channels():
     with open("announcement_channels.json", "w") as f:
         json.dump(announcement_channels, f, indent=4)
+
 
 @bot.event
 async def on_ready():
@@ -92,3 +94,21 @@ async def on_ready():
         print(f"コマンドの同期に失敗: {e}")
 
     print(f"{bot.user} としてログインしました")
+
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+
+    if message.channel.id in announcement_channels:  # 数値のまま比較
+        try:
+            await message.add_reaction("✅")
+
+            if isinstance(message.channel, discord.TextChannel) and message.channel.type == discord.ChannelType.news:
+                await message.crosspost()
+                print(f"メッセージを公開しました: {message.id}")
+        except Exception as e:
+            print(f"リアクション付与または公開エラー: {e}")
+
+    await bot.process_commands(message)
+
