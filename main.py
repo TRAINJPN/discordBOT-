@@ -91,7 +91,5 @@ async def on_ready():
         await send_log(bot, "コマンドを同期しました")
     except Exception as e:
         print(f"コマンドの同期に失敗: {e}")
-        await send_log(bot, f"コマンドの同期に失敗: {e}")
 
     print(f"{bot.user} としてログインしました")
-    await send_log(bot, f"{bot.user} としてログインしました")
